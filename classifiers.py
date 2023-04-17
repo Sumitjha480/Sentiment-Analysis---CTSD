@@ -3,9 +3,7 @@ from sklearn.model_selection import cross_val_score
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.neural_network import MLPClassifier
 from sklearn.svm import SVC
-
-from UnigramTfFeatureGeneration import create_feature_set_and_labels
-from UnigramTfifdFeaturesetGeneration import get_features
+from TfifdFeaturesetGeneration import get_features
 
 
 def begin_test(train_x, test_x, train_y, test_y):
@@ -21,7 +19,6 @@ def begin_test(train_x, test_x, train_y, test_y):
             [clf1, clf2, clf3]):
         scores = cross_val_score(clf, x, y, cv=10, scoring='accuracy')
         f_measure = cross_val_score(clf, x, y, cv=10, scoring='f1')
-        # print(scores)
         print(label, "Accuracy:  ", scores.mean(), "+/- ", scores.std())
         print(label, "F-measure:  ", f_measure.mean())
 
@@ -38,9 +35,6 @@ def test_by_tfidf():
 
 
 if __name__ == '__main__':
-    print("="*10)
-    print("Unigram+Tf Accuracies")
-    test_by_tf()
     print("=" * 10)
-    print("Unigram+Tfidf Accuracies")
+    print("Tfidf Accuracies")
     test_by_tfidf()
